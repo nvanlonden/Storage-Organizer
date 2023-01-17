@@ -1,38 +1,98 @@
+img {
+  width: 90%;
+  height: auto;
+  object-fit: cover;
+  position: relative;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.search-container {
+  position: fixed;
+  top: 45%;
+  right: 0;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  z-index: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+input[type="text"] {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 0 10px;
+}
+
+
+.title {
+  position: absolute;
+  width: 200%;
+  top: -70%; 
+  right: 70%;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  z-index: 1;
+}
+
+
+@media screen and (max-width: 800px) {
+  img {
+    width: 20%;
   }
 }
+
+@media screen and (max-width: 400px) {
+  img {
+    width: 40%;
+  }
+}
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-gap: 10px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+
+}
+
+.grid-container {
+  display: flex;
+  width: 100%;
+}
+
+.empty-grid {
+  width: 50%;
+  float: left;
+}
+.row {
+  display: flex;
+}
+
+.cell {
+  flex: 1 0 11%;
+  height: 0;
+  padding-bottom: 11%;
+  border: 1px solid black;
+}
+
+.image-container {
+  position: relative;
+}
+
+
+
+
+
+
