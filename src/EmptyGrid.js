@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import data from './data.json';
 
-function EmptyGrid() {
+function EmptyGrid({ firstImage }) {
   const [grid, setGrid] = useState(Array(6).fill(null).map(() => Array(9).fill(null)));
+
+  useEffect(() => {
+    if (firstImage) {
+      const newGrid = [...grid];
+      newGrid[0][0] = firstImage.id.toString();
+      setGrid(newGrid);
+    }
+  }, [firstImage]);
 
   const handleImageDrop = (event, x, y) => {
     const imageId = event.dataTransfer.getData("imageId");
@@ -12,7 +20,7 @@ function EmptyGrid() {
   }
 
   return (
-    <div className="empty-grid" style={{ width: '50%', float: 'left' }}>
+    <div className="empty-grid">
       {grid.map((row, x) => (
         <div className="row" key={x}>
           {row.map((cell, y) => (

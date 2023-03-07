@@ -1,5 +1,5 @@
 img {
-  width: 90%;
+  width: 80%;
   height: auto;
   object-fit: cover;
   position: relative;
@@ -14,14 +14,14 @@ img {
 
 .search-container {
   position: fixed;
-  top: 45%;
+  top: 50%;
   right: 0;
-  width: 50%;
+  width: 49%;
   display: flex;
   align-items: center;
   padding: 0 10px;
-  z-index: 1;
 }
+
 
 input[type="text"] {
   width: 100%;
@@ -32,15 +32,14 @@ input[type="text"] {
   padding: 0 10px;
 }
 
-
 .title {
   position: absolute;
-  width: 200%;
   top: -70%; 
-  right: 70%;
+  left: 50%;
   background-color: rgba(255, 255, 255, 0.9);
   padding: 10px;
-  z-index: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
@@ -55,6 +54,7 @@ input[type="text"] {
     width: 40%;
   }
 }
+
 .image-grid {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
@@ -63,8 +63,8 @@ input[type="text"] {
   bottom: 0;
   right: 0;
   width: 50%;
-  height: 50%;
-
+  height: 44%;
+  overflow-y: scroll;
 }
 
 .grid-container {
@@ -73,9 +73,10 @@ input[type="text"] {
 }
 
 .empty-grid {
-  width: 50%;
+  width: 49%;
   float: left;
 }
+
 .row {
   display: flex;
 }
@@ -91,8 +92,35 @@ input[type="text"] {
   position: relative;
 }
 
+.hovering-right-column {
+  position: absolute;
+  top: -70%; 
+  left: 50%;
+  background-color: rgba(235, 20, 20, 0.9);
+  padding: 10px;
+  z-index: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
+.filter-pane {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1f1f1;
+  z-index: 1;
+}
 
-
-
-
+.filter-pane button {
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4CAF50;
+  color: white;
+}

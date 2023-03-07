@@ -1,20 +1,33 @@
-import React from 'react';
-import data from './data.json';
+import React, { useState } from 'react';
 import './App.css';
 
-function ImageGrid({ searchText }) {
-  const [visible, setVisible] = React.useState({});
+function ImageGrid({ searchText, data, fillGrid }) {
+  const [visible, setVisible] = useState({});
 
-  const filteredData = data.filter(image => image.title.toLowerCase().includes(searchText.toLowerCase()));
+  const handleMouseEnter = (id) => {
+    setVisible(prevVisible => ({...prevVisible, [id]: true}));
+  };
+
+  const handleMouseLeave = (id) => {
+    setVisible(prevVisible => ({...prevVisible, [id]: false}));
+  };
+
+  const filteredData = data.filter(image =>
+    image.title.toLowerCase().includes(searchText.toLowerCase())
+  );
+
+  const handleFillGrid = () => {
+    fillGrid(filteredData[0].id);
+  };
 
   return (
     <div className="image-grid">
       {filteredData.map(image => (
-        <div 
-          className="image-container" 
-          key={image.id} 
-          onMouseEnter={() => setVisible({ [image.id]: true })} 
-          onMouseLeave={() => setVisible({ [image.id]: false })}
+        <div
+          className={`image-container${image.column === 3 ? " right-column" : ""}`}
+          key={image.id}
+          onMouseEnter={() => handleMouseEnter(image.id)}
+          onMouseLeave={() => handleMouseLeave(image.id)}
           onDragStart={event => event.dataTransfer.setData("imageId", image.id)}
         >
           <img src={`./images/${image.fileName}`} alt={image.title} draggable={true} />
@@ -22,14 +35,16 @@ function ImageGrid({ searchText }) {
             <div className="title">
               {image.title}
               <br />
-              Stack Size: {image.stack_size}
+              X {image.stack_size}
             </div>
           )}
         </div>
       ))}
+      <div className="fill-grid-button">
+        <button onClick={handleFillGrid}>Fill grid</button>
+      </div>
     </div>
   );
-  
 }
 
 export default ImageGrid;
